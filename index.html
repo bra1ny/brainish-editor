@@ -65,7 +65,11 @@
                 <% for (var i in input) { %>
                 <div class="value-item">
                     <div class="value-input"><%- input[i] %></div>
-                    <div class="value-output value-no" draggable="true">null</div>
+                    <% if (janishInput[input[i]]) { %>
+                    <div class="value-output value-output-having"><%-janishInput[input[i]]%></div>
+                    <% } else { %>
+                    <div class="value-output value-no">null</div>
+                    <% } %>
                 </div>
                 <% } %>
             </div>
@@ -75,7 +79,7 @@
             <div class="output">
                 <% for (var i in output) { %>
                 <div class="value-item">
-                    <div class="value-output"><%- output[i] %></div>
+                    <div class="value-output value-output-use" draggable="true"><%- output[i] %></div>
                 </div>
                 <% } %>
             </div>
@@ -91,7 +95,7 @@
             <div class="output">
                 <% for (var i in output) { %>
                 <div class="value-item">
-                    <div class="value-output"><%- output[i] %></div>
+                    <div class="value-output value-output-use" draggable="true"><%- output[i] %></div>
                 </div>
                 <% } %>
             </div>

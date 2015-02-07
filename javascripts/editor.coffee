@@ -52,6 +52,40 @@ panel_janish = [
 ]
 
 
+setInput = (value, path, variable) ->
+  path = path.substring(5)
+  paths = path.split(".")
+  working = panel_janish
+  json_path = ""
+  for p in paths
+    if p.indexOf("|") >= 0
+      p_id = p.split("|")[0]
+      p_sub = p.split("|")[1]
+#      console.log "working", working
+      if Array.isArray(working)
+        for i, j of working
+          if j["id"] == p_id
+            json_path += ("[" + i + "]")
+            working = j["sub"][p_sub]
+            json_path += (".sub[\"" + p_sub + "\"]")
+  #          console.log "change working", working
+            break
+      else
+        working = working["sub"][p_sub]
+    else
+      for i, j of working
+        if j["id"] == p
+          json_path +=  ("[" + i + "]")
+          working = j
+          break
+  working["input"][variable] = value
+  console.log(working)
+  console.log(panel_janish)
+  loadJanish()
+
+
+
+
 logLocation = ->
   $illusion1 = $("#illusion-2")
   console.log $("#illusion-1").position()
@@ -129,12 +163,39 @@ setupDropEvent = ->
     console.log currentDraggingData
     console.log $(this).attr("path")
   )
-
-  $(".value-output").click (e) ->
+  $(".value-output-having").on("click", (e) ->
     $this = $(this)
-    console.log($this.html())
-    path = $this.closest(".janish").attr("path")
-    console.log path
+    my_path = $this.closest(".janish").attr("path")
+    my_name = $this.closest(".value-item").find(".value-input").html()
+    setInput(null, my_path, my_name)
+  )
+  $(".value-no").on("dragover", (e) ->
+    e.preventDefault()
+  )
+  $(".value-no").on("drop", (e) ->
+    if currentDraggingType != DRAGGING_OUTPUT_FROM_PANEL
+      return
+    value = currentDraggingData
+    $this = $(this)
+    my_path = $this.closest(".janish").attr("path")
+    my_name = $this.closest(".value-item").find(".value-input").html()
+    setInput(value, my_path, my_name)
+  )
+  $(".value-output-use").on("dragstart", (e) ->
+    $this = $(this)
+    name = $this.html()
+    path = $this.closest(".janish").attr("path").split(".")
+    id = path[path.length-1]
+    currentDraggingType = DRAGGING_OUTPUT_FROM_PANEL
+    currentDraggingData = "#" + id + "." + name
+    console.log(currentDraggingData)
+
+  )
+#  $(".value-output").click (e) ->
+#    $this = $(this)
+#    console.log($this.html())
+#    path = $this.closest(".janish").attr("path")
+#    console.log path
 
 
 
@@ -177,7 +238,9 @@ drawJanish = (janish, col, path) ->
       if h > min
         min = h
     drawPadding(col, min)
-    $janish = $(templateJanishItem(illusion))
+    janishItemValue = JSON.parse(JSON.stringify(illusion))
+    janishItemValue["janishInput"] = janish["input"]
+    $janish = $(templateJanishItem(janishItemValue))
     $janish.attr("path", path)
 #    $janish.attr("id", "janish-" + janish["id"])
     $("#janish-col-" + col).append($janish)
@@ -235,7 +298,6 @@ documentReady = ->
       illusions = data
       loadIllusions()
       loadJanish()
-  setupDropEvent()
 
 
 $(document).ready documentReady
