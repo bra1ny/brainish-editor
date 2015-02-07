@@ -269,3 +269,11 @@ h1 {
   text-decoration: none;
   padding: 4px 10px;
 }
+input.transparent {
+  width: 50px;
+  background: none;
+  border: none;
+}
+*:focus {
+  outline: 0;
+}

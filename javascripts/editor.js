@@ -262,6 +262,18 @@
       my_name = $this.closest(".value-item").find(".value-input").html();
       return setInput(null, my_path, my_name);
     });
+    $(".value-no").on("dblclick", function(e) {
+      var $input, $this, my_name, my_path;
+      $this = $(this);
+      $input = $("<input class='transparent'>");
+      $this.html("").append($input);
+      $input.focus();
+      my_path = $this.closest(".janish").attr("path");
+      my_name = $this.closest(".value-item").find(".value-input").html();
+      return $input.on("blur", function() {
+        return setInput(this.value, my_path, my_name);
+      });
+    });
     $(".value-no").on("dragover", function(e) {
       return e.preventDefault();
     });

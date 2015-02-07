@@ -224,6 +224,17 @@ setupDropEvent = ->
     my_name = $this.closest(".value-item").find(".value-input").html()
     setInput(null, my_path, my_name)
   )
+  $(".value-no").on("dblclick", (e) ->
+    $this = $(this);
+    $input = $("<input class='transparent'>")
+    $this.html("").append($input)
+    $input.focus()
+    my_path = $this.closest(".janish").attr("path")
+    my_name = $this.closest(".value-item").find(".value-input").html()
+    $input.on("blur", ->
+      setInput(this.value, my_path, my_name)
+    )
+  )
   $(".value-no").on("dragover", (e) ->
     e.preventDefault()
   )
