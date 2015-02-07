@@ -403,8 +403,9 @@ window.displayMonitor = ->
       window.compile(panel_janish)
     if window.server
       server.on("compilationFinished", (ret)->
-        $("#pre-branish").html(ret["brainish"])
-        $("#pre-bash").html(ret["bash"])
+        console.log ret["bash"]
+        $("#pre-branish").text(ret["brainish"])
+        $("#pre-bash").text(ret["bash"])
       )
     $("#code").show()
     $("#monitor").addClass("current")

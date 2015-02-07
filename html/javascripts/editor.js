@@ -478,8 +478,9 @@
       }
       if (window.server) {
         server.on("compilationFinished", function(ret) {
-          $("#pre-branish").html(ret["brainish"]);
-          return $("#pre-bash").html(ret["bash"]);
+          console.log(ret["bash"]);
+          $("#pre-branish").text(ret["brainish"]);
+          return $("#pre-bash").text(ret["bash"]);
         });
       }
       $("#code").show();
