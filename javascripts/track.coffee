@@ -46,5 +46,7 @@ add_janish = (path, new_janish) ->
   # pass
 
 
+add_janish("main", {"hello": "world"})
 add_janish("main.for_each_1|test", {"hello": "world"})
+add_janish("main.for_each_1|body", {"hello": "world"})
 add_janish("main.for_each_1|body.for_each_2|test", {"hello": "world"})

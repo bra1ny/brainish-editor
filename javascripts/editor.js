@@ -142,10 +142,17 @@
       e.preventDefault();
       return $(this).removeClass("drag-over");
     });
-    return $(".janish-plus").on("drop", function(e) {
+    $(".janish-plus").on("drop", function(e) {
       console.log(currentDraggingType);
       console.log(currentDraggingData);
       return console.log($(this).attr("path"));
+    });
+    return $(".value-output").click(function(e) {
+      var $this, path;
+      $this = $(this);
+      console.log($this.html());
+      path = $this.closest(".janish").attr("path");
+      return console.log(path);
     });
   };
 
@@ -183,7 +190,7 @@
   templateJanishSub = _template($("#template-janish-sub").html());
 
   drawJanish = function(janish, col, path) {
-    var $janish, base_height, c, count, end_top, h, i, illusion, item, j, key, left, min, name, output, sub_janish, sub_list, sub_path, _i, _j, _k, _len, _len1, _ref, _ref1, _results, _results1;
+    var $janish, $sub_header, base_height, c, count, end_top, h, i, illusion, item, j, key, left, min, name, output, sub_janish, sub_list, sub_path, _i, _j, _k, _len, _len1, _ref, _ref1, _results, _results1;
     if (Array.isArray(janish)) {
       _results = [];
       for (_i = 0, _len = janish.length; _i < _len; _i++) {
@@ -202,6 +209,7 @@
       }
       drawPadding(col, min);
       $janish = $(templateJanishItem(illusion));
+      $janish.attr("path", path);
       $("#janish-col-" + col).append($janish);
       if (illusion.sub) {
         count = 0;
@@ -226,7 +234,9 @@
           c = col + Object.keys(illusion.sub).length - count;
           count++;
           drawPadding(c, base_height);
-          $("#janish-col-" + c).append(templateJanishSub(item));
+          $sub_header = $(templateJanishSub(item));
+          $sub_header.attr("path", path);
+          $("#janish-col-" + c).append($sub_header);
           if (janish["sub"] && janish["sub"][name]) {
             sub_janish = janish["sub"][name];
             drawJanish(sub_janish, c, sub_path);

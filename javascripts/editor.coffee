@@ -130,6 +130,13 @@ setupDropEvent = ->
     console.log $(this).attr("path")
   )
 
+  $(".value-output").click (e) ->
+    $this = $(this)
+    console.log($this.html())
+    path = $this.closest(".janish").attr("path")
+    console.log path
+
+
 
 colHeight = (col) ->
   $col = $("#janish-col-" + col)
@@ -171,6 +178,7 @@ drawJanish = (janish, col, path) ->
         min = h
     drawPadding(col, min)
     $janish = $(templateJanishItem(illusion))
+    $janish.attr("path", path)
 #    $janish.attr("id", "janish-" + janish["id"])
     $("#janish-col-" + col).append($janish)
     if illusion.sub
@@ -191,7 +199,9 @@ drawJanish = (janish, col, path) ->
         c = col + Object.keys(illusion.sub).length - count
         count++
         drawPadding(c, base_height)
-        $("#janish-col-" + c).append(templateJanishSub(item))
+        $sub_header = $(templateJanishSub(item))
+        $sub_header.attr("path", path)
+        $("#janish-col-" + c).append($sub_header)
         if janish["sub"] && janish["sub"][name]
           sub_janish = janish["sub"][name]
           drawJanish(sub_janish, c, sub_path)

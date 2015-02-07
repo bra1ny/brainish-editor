@@ -43,7 +43,15 @@
 
   add_janish = function(path, new_janish) {};
 
+  add_janish("main", {
+    "hello": "world"
+  });
+
   add_janish("main.for_each_1|test", {
+    "hello": "world"
+  });
+
+  add_janish("main.for_each_1|body", {
     "hello": "world"
   });
 
