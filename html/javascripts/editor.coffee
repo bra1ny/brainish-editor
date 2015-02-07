@@ -51,6 +51,9 @@ panel_janish = [
   }
 ]
 
+_id = 0
+get_unique_id = (illusion) ->
+  return illusion["illusion"].toLowerCase() + "-" + (_id++)
 
 setInput = (value, path, variable) ->
   path = path.substring(5)
@@ -120,7 +123,7 @@ createJanish = (path, illusion)->
 #  console.log(working)
 
   janish = {
-    "id": "test"
+    "id": get_unique_id(illusion)
     "illusion": illusion["illusion"]
     "input": {}
     "output": {}
@@ -296,8 +299,8 @@ setupDropEvent = ->
     currentDraggingData = "#" + id + "." + name
     console.log(currentDraggingData)
   )
-  $(".janish").on("dblclick", ->
-    $this = $(this)
+  $(".janish .icon").on("dblclick", ->
+    $this = $(this).closest(".janish")
     path = $this.attr("path")
     deleteJanish(path)
   )
