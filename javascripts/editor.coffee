@@ -25,13 +25,21 @@ panel_janish = [
     },
     "sub": {
       "body":
-        {
+        [{
           "id": "print_2",
           "illusion": "PRINT",
           "input": {
             "content": "#for_each_1.iterator"
           }
-        }
+        },
+          {
+            "id": "for_each_1",
+            "illusion": "FOR",
+            "input": {
+              "list": "#list_file_1.file_list"
+            }
+          }
+        ]
     }
   }
   {
@@ -109,7 +117,7 @@ colHeight = (col) ->
   $col = $("#janish-col-" + col)
   $last = $col.children().last()
   if $last.length
-    $last.position().top + $last.height()
+    $last.position().top + $last.height() + 45
   else
     0
 
@@ -118,7 +126,7 @@ colHeight = (col) ->
 drawPadding = (col, height) ->
   if height - 7 - colHeight(col) > 0
     $padding = $("<div></div>")
-    $padding.css("height", height - 7 - colHeight(col))
+    $padding.css("height", height - colHeight(col))
     $("#janish-col-" + col).append($padding)
 
 
@@ -152,7 +160,6 @@ drawJanish = (janish, col) ->
         })
       sub_list.reverse()
       base_height = $janish.position().top
-      console.log base_height
       for item in sub_list
         name = item["name"]
         output = item["output"]

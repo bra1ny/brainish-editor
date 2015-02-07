@@ -32,13 +32,21 @@
         "list": "#list_file_1.file_list"
       },
       "sub": {
-        "body": {
-          "id": "print_2",
-          "illusion": "PRINT",
-          "input": {
-            "content": "#for_each_1.iterator"
+        "body": [
+          {
+            "id": "print_2",
+            "illusion": "PRINT",
+            "input": {
+              "content": "#for_each_1.iterator"
+            }
+          }, {
+            "id": "for_each_1",
+            "illusion": "FOR",
+            "input": {
+              "list": "#list_file_1.file_list"
+            }
           }
-        }
+        ]
       }
     }, {
       "id": "print_3",
@@ -134,7 +142,7 @@
     $col = $("#janish-col-" + col);
     $last = $col.children().last();
     if ($last.length) {
-      return $last.position().top + $last.height();
+      return $last.position().top + $last.height() + 45;
     } else {
       return 0;
     }
@@ -144,7 +152,7 @@
     var $padding;
     if (height - 7 - colHeight(col) > 0) {
       $padding = $("<div></div>");
-      $padding.css("height", height - 7 - colHeight(col));
+      $padding.css("height", height - colHeight(col));
       return $("#janish-col-" + col).append($padding);
     }
   };
@@ -189,7 +197,6 @@
         }
         sub_list.reverse();
         base_height = $janish.position().top;
-        console.log(base_height);
         _results1 = [];
         for (_k = 0, _len1 = sub_list.length; _k < _len1; _k++) {
           item = sub_list[_k];
