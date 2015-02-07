@@ -115,6 +115,7 @@
         </div>
         <div class="icon"><i class="fa fa-<%- icon %>"></i></div>
         <div class="name"><%- name %></div>
+        <% if (output && output.length) { %>
         <div class="output">
             <% for (var i in output) { %>
             <div class="value-item">
@@ -122,11 +123,13 @@
             </div>
             <% } %>
         </div>
+        <% } %>
     </div>
 </script>
 <script id="template-janish-sub" type="text/html">
     <div class="janish">
         <div class="name"><%- name %></div>
+        <% if (output && output.length) { %>
         <div class="output">
             <% for (var i in output) { %>
             <div class="value-item">
@@ -134,6 +137,7 @@
             </div>
             <% } %>
         </div>
+        <% } %>
     </div>
 </script>
 <script id="template-janish-plus" type="text/html">

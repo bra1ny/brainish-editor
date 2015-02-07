@@ -19,7 +19,8 @@
         "input": ["list"],
         "output": [],
         "sub": {
-          "body": "iterator"
+          "body": ["iterator"],
+          "test": []
         }
       },
       {
@@ -42,20 +43,14 @@
         "description": "List all the files in a directory.",
         "illusion": "LS",
         "input": ["path"],
-        "output": ["file_list"],
-        "sub": {
-          "body": "iterator"
-        }
+        "output": ["file_list"]
       },
       {
         "name": "Filter",
         "icon": "check",
         "description": "Filter the file list.",
         "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
+        "output": ["output1", "output2"]
       }
     ]
   },
@@ -68,20 +63,14 @@
         "icon": "check",
         "description": "Execute some illusions if condition matches.",
         "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
+        "output": ["output1", "output2"]
       },
       {
         "name": "Check Condition2",
         "icon": "check",
         "description": "Execute some illusions if condition matches.",
         "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
+        "output": ["output1", "output2"]
       },
       {
         "name": "Check Condition",

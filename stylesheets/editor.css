@@ -179,7 +179,8 @@ h1 {
 #panel .janish-plus.drag-over {
   border: 4px dotted #cccccc;
 }
-#panel-move {
+#panel-move,
+#janish-panel {
   width: 2000px;
   height: 2000px;
 }

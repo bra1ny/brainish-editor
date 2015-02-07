@@ -125,7 +125,12 @@
 
   colHeight = [];
 
-  drawPadding = function(col, height) {};
+  drawPadding = function(col, height) {
+    var $padding;
+    $padding = $("<div></div>");
+    $padding.css("height", height - 7);
+    return $("#janish-col-" + col).append($padding);
+  };
 
   templateJanishItem = _template($("#template-janish-item").html());
 
@@ -134,33 +139,33 @@
   $janishPlus = $("#template-janish-plus").html();
 
   drawJanish = function(janish, col) {
-    var $janish, illusion, j, key, sub_janish, _i, _len, _ref;
+    var $janish, height, illusion, j, key, output, sub_janish, _i, _len, _ref;
     if (Array.isArray(janish)) {
       for (_i = 0, _len = janish.length; _i < _len; _i++) {
         j = janish[_i];
         drawJanish(j, col);
       }
-      $("#janish-col-" + col).append($janishPlus);
     } else {
       illusion = illusionDict[janish["illusion"]];
       console.log(illusion);
-      $janish = templateJanishItem(illusion);
+      $janish = $(templateJanishItem(illusion));
       $("#janish-col-" + col).append($janish);
-      if (janish.sub) {
-        _ref = janish.sub;
+      if (illusion.sub) {
+        height = $janish.position().top;
+        _ref = illusion.sub;
         for (key in _ref) {
-          sub_janish = _ref[key];
+          output = _ref[key];
           col++;
-          console.log(key);
-          console.log(sub_janish);
+          drawPadding(col, height);
           $("#janish-col-" + col).append(templateJanishSub({
-            "name": "Sub Janish",
-            "output": ["output"]
+            "name": key,
+            "output": output
           }));
-          drawJanish(sub_janish, col);
-          if (!Array.isArray(sub_janish)) {
-            $("#janish-col-" + col).append($janishPlus);
+          if (janish["sub"] && janish["sub"][key]) {
+            sub_janish = janish["sub"][key];
+            drawJanish(sub_janish, col);
           }
+          $("#janish-col-" + col).append($janishPlus);
         }
       }
     }
@@ -179,7 +184,8 @@
       $item.attr("id", "janish-col-" + i);
       $janishPanel.append($item);
     }
-    return drawJanish(panel_janish, 0);
+    drawJanish(panel_janish, 0);
+    return $("#janish-col-0").append($janishPlus);
   };
 
   documentReady = function() {
