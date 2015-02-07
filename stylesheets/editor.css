@@ -87,6 +87,7 @@ h1 {
   height: 100%;
   background: #ffffff;
   padding: 50px 0 0 350px;
+  overflow: auto;
 }
 #panel .illusion {
   position: absolute;
@@ -99,6 +100,7 @@ h1 {
   margin: 10px 10px 0 10px;
   background: #ffffff;
   text-align: center;
+  padding: 2px 0;
 }
 #panel .illusion .icon {
   text-align: center;
@@ -112,6 +114,7 @@ h1 {
   margin: 5px 10px 10px 10px;
   background: #ffffff;
   text-align: center;
+  padding: 2px 0;
 }
 #panel .illusion .value-item {
   display: inline-block;
@@ -121,7 +124,7 @@ h1 {
   display: inline-block;
   height: 22px;
   line-height: 22px;
-  margin: 4px 0 ;
+  margin: 2px 0 ;
 }
 #panel .illusion .value-input {
   background: #776554;
@@ -153,4 +156,12 @@ h1 {
 }
 #panel .illusion .value-no {
   background: #cccccc;
+}
+#panel-move {
+  width: 2000px;
+  height: 2000px;
+}
+#panel-background {
+  width: 100%;
+  height: 100%;
 }
