@@ -11,7 +11,7 @@
     <h1>Brainish Editor</h1>
     <div id="top-bars">
         <li><a href="#" onclick="displayRun()"><i class="fa fa-share-alt"></i></a></li>
-        <li><a href="#" onclick="runResult()"><i class="fa fa-play"></i></a></li>
+        <li><a href="#" onclick="displayRunResult()"><i class="fa fa-play"></i></a></li>
         <li><a href="#" id="monitor" onclick="displayMonitor()"><i class="fa fa-desktop"></i></a></li>
     </div>
 </div>
@@ -40,6 +40,12 @@
     <div>
         <a href="/bash.sh" id="download"><i class="fa fa-download"></i> Download Bash</a>
         <a href="#" onclick="hideRun()">Done</a>
+    </div>
+</div>
+<div id="runResult">
+    <textarea id="run-result-text"></textarea>
+    <div>
+        <a href="#" onclick="hideRunResult()">Done</a>
     </div>
 </div>
 <script id="template-illusion-type-item" type="text/html">

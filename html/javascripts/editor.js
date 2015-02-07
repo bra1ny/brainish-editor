@@ -444,7 +444,10 @@
         illusions = data;
         loadIllusions();
         loadJanish();
-        sample = document.URL.split("?")[1].replace("#", "");
+        sample = document.URL.split("?")[1];
+        if (sample) {
+          sample = sample.replace("#", "");
+        }
         if (sample) {
           return $.ajax({
             "url": "sample/" + sample + ".json",
@@ -493,8 +496,26 @@
     return $("#run").show();
   };
 
+  window.displayRunResult = function() {
+    if (window.compile) {
+      console.log(panel_janish);
+      console.log(JSON.stringify(panel_janish));
+      window.compile(panel_janish);
+    }
+    if (window.server) {
+      server.on("result", function(ret) {
+        return $("#run-result-text").val(ret);
+      });
+    }
+    return $("#runResult").show();
+  };
+
   window.hideRun = function() {
     return $("#run").hide();
+  };
+
+  window.hideRunResult = function() {
+    return $("#runResult").hide();
   };
 
 }).call(this);
