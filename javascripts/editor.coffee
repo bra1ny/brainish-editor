@@ -18,6 +18,13 @@ panel_janish = [
     }
   }
   {
+    "id": "print_3",
+    "illusion": "PRINT",
+    "input": {
+      "content": "meh"
+    }
+  }
+  {
     "id": "for_each_1",
     "illusion": "FOR",
     "input": {
@@ -40,13 +47,6 @@ panel_janish = [
             }
           }
         ]
-    }
-  }
-  {
-    "id": "print_3",
-    "illusion": "PRINT",
-    "input": {
-      "content": "meh"
     }
   }
 ]
@@ -84,6 +84,53 @@ setInput = (value, path, variable) ->
   loadJanish()
 
 
+createJanish = (path, illusion)->
+#  console.log(path)
+#  console.log(illusion)
+  path = path.substring(5)
+  paths = path.split(".")
+  working = panel_janish
+  json_path = ""
+  for p in paths
+    if p.indexOf("|") >= 0
+      p_id = p.split("|")[0]
+      p_sub = p.split("|")[1]
+      #      console.log "working", working
+      if Array.isArray(working)
+        for i, j of working
+          if j["id"] == p_id
+            json_path += ("[" + i + "]")
+            if ! j["sub"]
+              j["sub"] = {}
+            if ! j["sub"][p_sub]
+              j["sub"][p_sub] = []
+            working = j["sub"][p_sub]
+            json_path += (".sub[\"" + p_sub + "\"]")
+            #          console.log "change working", working
+            break
+      else
+        working = working["sub"][p_sub]
+    else
+      for i, j of working
+        if j["id"] == p
+          json_path +=  ("[" + i + "]")
+          working = j
+          break
+#  console.log(json_path)
+#  console.log(working)
+
+  janish = {
+    "id": "test"
+    "illusion": illusion["illusion"]
+    "input": {}
+    "output": {}
+  }
+
+  try
+    eval("panel_janish" + json_path + ".push(janish)")
+  catch ex
+    val("panel_janish" + json_path + " = [janish]")
+  loadJanish()
 
 
 logLocation = ->
@@ -99,6 +146,7 @@ drawLine = (p1_x, p1_y, p2_x, p2_y) ->
   # 2d line
   context = c.getContext('2d')
   # starting point
+  context.beginPath()
   context.moveTo p1_x, p1_y
   # ending point
   context.lineTo p2_x, p2_y
@@ -108,6 +156,12 @@ drawLine = (p1_x, p1_y, p2_x, p2_y) ->
   context.lineWidth = 4
   # line up
   context.stroke()
+
+clearContext =  ->
+  # FILL IN CANVAS ID
+  c = document.getElementById('panel-background')
+  context = c.getContext('2d')
+  context.clearRect(0, 0, c.width, c.height)
 
 
 loadIllusions = ->
@@ -159,9 +213,10 @@ setupDropEvent = ->
     $(this).removeClass "drag-over"
   )
   $(".janish-plus").on("drop",(e) ->
-    console.log currentDraggingType
-    console.log currentDraggingData
-    console.log $(this).attr("path")
+    if currentDraggingType = DRAGGING_ILLUSION_FROM_LIST
+      currentDraggingData
+      path = $(this).attr("path")
+      createJanish(path, currentDraggingData)
   )
   $(".value-output-having").on("click", (e) ->
     $this = $(this)
@@ -276,6 +331,7 @@ drawJanish = (janish, col, path) ->
 
 loadJanish = ->
   console.log(panel_janish)
+  clearContext()
   $janishPanel = $("#janish-panel")
   $janishPanel.html("")
   for i in [0...20]
