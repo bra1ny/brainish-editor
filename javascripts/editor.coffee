@@ -33,7 +33,7 @@ panel_janish = [
           }
         },
           {
-            "id": "for_each_1",
+            "id": "for_each_2",
             "illusion": "FOR",
             "input": {
               "list": "#list_file_1.file_list"
@@ -150,16 +150,16 @@ drawPadding = (col, height) ->
 janishPlusHtml = $("#template-janish-plus").html()
 createPlus = (col, path) ->
   $janishPlus = $(janishPlusHtml)
-  $janishPlus.attr("path", "path")
+  $janishPlus.attr("path", path)
   $("#janish-col-" + col).append($janishPlus)
 
 
 templateJanishItem = _template($("#template-janish-item").html())
 templateJanishSub = _template($("#template-janish-sub").html())
-drawJanish = (janish, col) ->
+drawJanish = (janish, col, path) ->
   if Array.isArray(janish)
     for j in janish
-      drawJanish(j, col)
+      drawJanish(j, col, path + "." + j["id"])
 #    $("#janish-col-" + col).append($janishPlus)
   else
     illusion = illusionDict[janish["illusion"]]
@@ -187,14 +187,15 @@ drawJanish = (janish, col) ->
       for item in sub_list
         name = item["name"]
         output = item["output"]
+        sub_path = path + "|" + name
         c = col + Object.keys(illusion.sub).length - count
         count++
         drawPadding(c, base_height)
         $("#janish-col-" + c).append(templateJanishSub(item))
         if janish["sub"] && janish["sub"][name]
           sub_janish = janish["sub"][name]
-          drawJanish(sub_janish, c)
-        createPlus(c, "path")
+          drawJanish(sub_janish, c, sub_path)
+        createPlus(c, sub_path)
         left = c*380 + 230
         end_top = $("#janish-col-" + c).children().last().position().top
         drawLine(left, base_height+60, left, end_top+70)
@@ -208,8 +209,8 @@ loadJanish = ->
     $item = $('<div class="janish-col"></div>')
     $item.attr("id", "janish-col-" + i)
     $janishPanel.append($item)
-  drawJanish(panel_janish, 0)
-  createPlus(0, "path")
+  drawJanish(panel_janish, 0, "main")
+  createPlus(0, "main")
   start_p = $("#janish-col-0").children().first().position()
   end_p = $("#janish-col-0").children().last().position()
   drawLine(start_p.left + 150, start_p.top + 30, end_p.left + 150, end_p.top + 70)

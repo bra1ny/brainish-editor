@@ -40,7 +40,7 @@
               "content": "#for_each_1.iterator"
             }
           }, {
-            "id": "for_each_1",
+            "id": "for_each_2",
             "illusion": "FOR",
             "input": {
               "list": "#list_file_1.file_list"
@@ -174,7 +174,7 @@
   createPlus = function(col, path) {
     var $janishPlus;
     $janishPlus = $(janishPlusHtml);
-    $janishPlus.attr("path", "path");
+    $janishPlus.attr("path", path);
     return $("#janish-col-" + col).append($janishPlus);
   };
 
@@ -182,13 +182,13 @@
 
   templateJanishSub = _template($("#template-janish-sub").html());
 
-  drawJanish = function(janish, col) {
-    var $janish, base_height, c, count, end_top, h, i, illusion, item, j, key, left, min, name, output, sub_janish, sub_list, _i, _j, _k, _len, _len1, _ref, _ref1, _results, _results1;
+  drawJanish = function(janish, col, path) {
+    var $janish, base_height, c, count, end_top, h, i, illusion, item, j, key, left, min, name, output, sub_janish, sub_list, sub_path, _i, _j, _k, _len, _len1, _ref, _ref1, _results, _results1;
     if (Array.isArray(janish)) {
       _results = [];
       for (_i = 0, _len = janish.length; _i < _len; _i++) {
         j = janish[_i];
-        _results.push(drawJanish(j, col));
+        _results.push(drawJanish(j, col, path + "." + j["id"]));
       }
       return _results;
     } else {
@@ -222,15 +222,16 @@
           item = sub_list[_k];
           name = item["name"];
           output = item["output"];
+          sub_path = path + "|" + name;
           c = col + Object.keys(illusion.sub).length - count;
           count++;
           drawPadding(c, base_height);
           $("#janish-col-" + c).append(templateJanishSub(item));
           if (janish["sub"] && janish["sub"][name]) {
             sub_janish = janish["sub"][name];
-            drawJanish(sub_janish, c);
+            drawJanish(sub_janish, c, sub_path);
           }
-          createPlus(c, "path");
+          createPlus(c, sub_path);
           left = c * 380 + 230;
           end_top = $("#janish-col-" + c).children().last().position().top;
           _results1.push(drawLine(left, base_height + 60, left, end_top + 70));
@@ -250,8 +251,8 @@
       $item.attr("id", "janish-col-" + i);
       $janishPanel.append($item);
     }
-    drawJanish(panel_janish, 0);
-    createPlus(0, "path");
+    drawJanish(panel_janish, 0, "main");
+    createPlus(0, "main");
     start_p = $("#janish-col-0").children().first().position();
     end_p = $("#janish-col-0").children().last().position();
     drawLine(start_p.left + 150, start_p.top + 30, end_p.left + 150, end_p.top + 70);
