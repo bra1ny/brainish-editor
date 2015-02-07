@@ -45,6 +45,14 @@
         "illusion": "GOOGLE_SEARCH",
         "input": ["url"],
         "output": ["result"]
+      },
+      {
+        "name": "Change Directory",
+        "icon": "circle",
+        "description": "Change Directory",
+        "illusion": "CD",
+        "input": ["path"],
+        "output": ["pwd"]
       }
     ]
   },
