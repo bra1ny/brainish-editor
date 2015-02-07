@@ -17,12 +17,12 @@
         <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
     </ul>
     <div id="illusion-list">
-        <div class="illusion-option">
+        <div class="illusion-option" draggable="true">
             <div class="icon"><i class="fa fa-check"></i></div>
             <div class="name">Check Condition</div>
             <div class="description">Execute some illusions if condition</div>
         </div>
-        <div class="illusion-option">
+        <div class="illusion-option" draggable="true">
             <div class="icon"><i class="fa fa-code"></i></div>
             <div class="name">Check Condition</div>
             <div class="description">Execute some illusions if condition</div>
@@ -32,50 +32,67 @@
 <div id="panel">
     <div id="panel-move">
         <div id="illusion-panel">
-            <div class="illusion">
-                <div class="input">
-                    <div class="value-item">
-                        <div class="value-input">File List</div>
-                        <div class="value-output">file_list_1</div>
+            <div class="illusion-col">
+                <div class="illusion" id="illusion-1" draggable="true">
+                    <div class="input">
+                        <div class="value-item">
+                            <div class="value-input">File List</div>
+                            <div class="value-output" draggable="true">file_list_1</div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-input">File List</div>
+                            <div class="value-output value-no">none</div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-input">File List</div>
+                            <div class="value-output value-no">none</div>
+                        </div>
                     </div>
-                    <div class="value-item">
-                        <div class="value-input">File List</div>
-                        <div class="value-output value-no">none</div>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-input">File List</div>
-                        <div class="value-output value-no">none</div>
+                    <div class="icon"><i class="fa fa-code"></i></div>
+                    <div class="name">Check Condition</div>
+                    <div class="output">
+                        <div class="value-item">
+                            <div class="value-output">file_list_1</div>
+                        </div>
                     </div>
                 </div>
-                <div class="icon"><i class="fa fa-code"></i></div>
-                <div class="name">Check Condition</div>
-                <div class="output">
-                    <div class="value-item">
-                        <div class="value-output">file_list_1</div>
+                <div class="illusion" id="illusion-2">
+                    <div class="input">
+                        <div class="value-item">
+                            <div class="value-input">File List</div>
+                            <div class="value-output">file_list_1</div>
+                        </div>
                     </div>
+                    <div class="icon"><i class="fa fa-code"></i></div>
+                    <div class="name">Check Condition</div>
+                    <div class="output">
+                        <div class="value-item">
+                            <div class="value-output">file_list_1</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="illusion illusion-plus">
+                    <i class="fa fa-plus"></i>
                 </div>
             </div>
-            <div class="illusion" style="margin-top: 250px">
-                <div class="input">
-                    <div class="value-item">
-                        <div class="value-input">File List</div>
-                        <div class="value-output">file_list_1</div>
+            <div class="illusion-col">
+                <div class="illusion" id="illusion-3">
+                    <div class="input">
+                        <div class="value-item">
+                            <div class="value-input">File List</div>
+                            <div class="value-output">file_list_1</div>
+                        </div>
                     </div>
-                    <div class="value-item">
-                        <div class="value-input">File List</div>
-                        <div class="value-output value-no">none</div>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-input">File List</div>
-                        <div class="value-output value-no">none</div>
+                    <div class="icon"><i class="fa fa-code"></i></div>
+                    <div class="name">Check Condition</div>
+                    <div class="output">
+                        <div class="value-item">
+                            <div class="value-output">file_list_1</div>
+                        </div>
                     </div>
                 </div>
-                <div class="icon"><i class="fa fa-code"></i></div>
-                <div class="name">Check Condition</div>
-                <div class="output">
-                    <div class="value-item">
-                        <div class="value-output">file_list_1</div>
-                    </div>
+                <div class="illusion illusion-plus">
+                    <i class="fa fa-plus"></i>
                 </div>
             </div>
         </div>

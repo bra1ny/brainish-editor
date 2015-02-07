@@ -1,9 +1,22 @@
+logLocation = ->
+  $illusion1 = $("#illusion-2")
+  console.log $("#illusion-1").position()
+  console.log $("#illusion-2").position()
+  console.log $("#illusion-3").position()
+
+
 documentReady = ->
   console.log "document ready"
-  c = document.getElementById("panel-background")
-  ctx = c.getContext("2d")
-  ctx.moveTo(0,0)
-  ctx.lineTo(200,100)
-  ctx.stroke()
+  $("#illusion-panel").click(logLocation)
+  logLocation()
+  $(".illusion-plus").on("dragover", (e) ->
+    e.preventDefault()
+  )
+  $(".illusion-plus").on("drop",(e) ->
+    console.log "drop"
+  )
+  $(".illusion-option").on("dragstart", (e) ->
+    console.log this
+  )
 
 $(document).ready documentReady

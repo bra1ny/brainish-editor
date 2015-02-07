@@ -89,12 +89,19 @@ h1 {
   padding: 50px 0 0 350px;
   overflow: auto;
 }
-#panel .illusion {
+#panel #illusion-panel {
   position: absolute;
+}
+#panel .illusion-col {
+  margin: 20px 0 0 80px;
+  float: left;
+}
+#panel .illusion {
   background: #eeeeee;
   width: 300px;
   color: #777777;
-  margin: 40px 80px;
+  padding: 10px 0;
+  margin: 40px 0;
 }
 #panel .illusion .input {
   margin: 10px 10px 0 10px;
@@ -156,6 +163,12 @@ h1 {
 }
 #panel .illusion .value-no {
   background: #cccccc;
+}
+#panel .illusion-plus {
+  border: 4px dotted #eeeeee;
+  background: #ffffff;
+  text-align: center;
+  color: #aaaaaa;
 }
 #panel-move {
   width: 2000px;
