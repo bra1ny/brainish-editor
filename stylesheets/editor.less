@@ -111,12 +111,16 @@ h1 {
     margin: 20px 0 0 80px;
     float: left;
   }
-  .janish {
+  .janish-content {
+    width: 300px;
     background: #eeeeee;
+    overflow: hidden;
+  }
+  .janish {
     width: 300px;
     color: #777777;
     padding: 10px 0;
-    margin: 40px 0;
+    margin: 20px 0;
     .input {
       margin: 10px 10px 0 10px;
       background: #ffffff;
@@ -179,12 +183,17 @@ h1 {
     }
   }
   .janish-plus {
-    border: 4px dotted #eeeeee;
-    background: #ffffff;
-    text-align: center;
-    color: #aaaaaa;
+    .janish-content {
+      border: 4px dotted #eeeeee;
+      background: #ffffff;
+      text-align: center;
+      color: #aaaaaa;
+      padding: 15px;
+    }
     &.drag-over {
-      border: 4px dotted #cccccc;
+      .janish-content {
+        border: 4px dotted #cccccc;
+      }
     }
   }
 }

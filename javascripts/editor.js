@@ -33,12 +33,18 @@
       },
       "sub": {
         "body": {
-          "id": "print_1",
+          "id": "print_2",
           "illusion": "PRINT",
           "input": {
             "content": "#for_each_1.iterator"
           }
         }
+      }
+    }, {
+      "id": "print_3",
+      "illusion": "PRINT",
+      "input": {
+        "content": "meh"
       }
     }
   ];
@@ -123,13 +129,24 @@
     });
   };
 
-  colHeight = [];
+  colHeight = function(col) {
+    var $col, $last;
+    $col = $("#janish-col-" + col);
+    $last = $col.children().last();
+    if ($last.length) {
+      return $last.position().top + $last.height();
+    } else {
+      return 0;
+    }
+  };
 
   drawPadding = function(col, height) {
     var $padding;
-    $padding = $("<div></div>");
-    $padding.css("height", height - 7);
-    return $("#janish-col-" + col).append($padding);
+    if (height - 7 - colHeight(col) > 0) {
+      $padding = $("<div></div>");
+      $padding.css("height", height - 7 - colHeight(col));
+      return $("#janish-col-" + col).append($padding);
+    }
   };
 
   templateJanishItem = _template($("#template-janish-item").html());
@@ -139,47 +156,66 @@
   $janishPlus = $("#template-janish-plus").html();
 
   drawJanish = function(janish, col) {
-    var $janish, height, illusion, j, key, output, sub_janish, _i, _len, _ref;
+    var $janish, base_height, c, count, h, i, illusion, item, j, key, min, name, output, sub_janish, sub_list, _i, _j, _k, _len, _len1, _ref, _ref1, _results, _results1;
     if (Array.isArray(janish)) {
+      _results = [];
       for (_i = 0, _len = janish.length; _i < _len; _i++) {
         j = janish[_i];
-        drawJanish(j, col);
+        _results.push(drawJanish(j, col));
       }
+      return _results;
     } else {
       illusion = illusionDict[janish["illusion"]];
-      console.log(illusion);
+      min = 0;
+      for (i = _j = _ref = col + 1; _ref <= 20 ? _j < 20 : _j > 20; i = _ref <= 20 ? ++_j : --_j) {
+        h = colHeight(i);
+        if (h > min) {
+          min = h;
+        }
+      }
+      drawPadding(col, min);
       $janish = $(templateJanishItem(illusion));
       $("#janish-col-" + col).append($janish);
       if (illusion.sub) {
-        height = $janish.position().top;
-        _ref = illusion.sub;
-        for (key in _ref) {
-          output = _ref[key];
-          col++;
-          drawPadding(col, height);
-          $("#janish-col-" + col).append(templateJanishSub({
+        count = 0;
+        sub_list = [];
+        _ref1 = illusion.sub;
+        for (key in _ref1) {
+          output = _ref1[key];
+          sub_list.push({
             "name": key,
             "output": output
-          }));
-          if (janish["sub"] && janish["sub"][key]) {
-            sub_janish = janish["sub"][key];
-            drawJanish(sub_janish, col);
-          }
-          $("#janish-col-" + col).append($janishPlus);
+          });
         }
+        sub_list.reverse();
+        base_height = $janish.position().top;
+        console.log(base_height);
+        _results1 = [];
+        for (_k = 0, _len1 = sub_list.length; _k < _len1; _k++) {
+          item = sub_list[_k];
+          name = item["name"];
+          output = item["output"];
+          c = col + Object.keys(illusion.sub).length - count;
+          count++;
+          drawPadding(c, base_height);
+          $("#janish-col-" + c).append(templateJanishSub(item));
+          if (janish["sub"] && janish["sub"][name]) {
+            sub_janish = janish["sub"][name];
+            drawJanish(sub_janish, c);
+          }
+          _results1.push($("#janish-col-" + c).append($janishPlus));
+        }
+        return _results1;
       }
     }
-    return col;
   };
 
   loadJanish = function() {
     var $item, $janishPanel, i, _i;
     console.log(panel_janish);
-    colHeight = [];
     $janishPanel = $("#janish-panel");
     $janishPanel.html("");
     for (i = _i = 0; _i < 20; i = ++_i) {
-      colHeight.push(0);
       $item = $('<div class="janish-col"></div>');
       $item.attr("id", "janish-col-" + i);
       $janishPanel.append($item);

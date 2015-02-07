@@ -102,12 +102,16 @@ h1 {
   margin: 20px 0 0 80px;
   float: left;
 }
-#panel .janish {
+#panel .janish-content {
+  width: 300px;
   background: #eeeeee;
+  overflow: hidden;
+}
+#panel .janish {
   width: 300px;
   color: #777777;
   padding: 10px 0;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 #panel .janish .input {
   margin: 10px 10px 0 10px;
@@ -170,13 +174,14 @@ h1 {
 #panel .janish .value-no {
   background: #cccccc;
 }
-#panel .janish-plus {
+#panel .janish-plus .janish-content {
   border: 4px dotted #eeeeee;
   background: #ffffff;
   text-align: center;
   color: #aaaaaa;
+  padding: 15px;
 }
-#panel .janish-plus.drag-over {
+#panel .janish-plus.drag-over .janish-content {
   border: 4px dotted #cccccc;
 }
 #panel-move,

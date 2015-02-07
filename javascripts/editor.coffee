@@ -26,12 +26,19 @@ panel_janish = [
     "sub": {
       "body":
         {
-          "id": "print_1",
+          "id": "print_2",
           "illusion": "PRINT",
           "input": {
             "content": "#for_each_1.iterator"
           }
         }
+    }
+  }
+  {
+    "id": "print_3",
+    "illusion": "PRINT",
+    "input": {
+      "content": "meh"
     }
   }
 ]
@@ -98,12 +105,21 @@ setupDropEvent = ->
   )
 
 
-colHeight = []
+colHeight = (col) ->
+  $col = $("#janish-col-" + col)
+  $last = $col.children().last()
+  if $last.length
+    $last.position().top + $last.height()
+  else
+    0
+
+
 
 drawPadding = (col, height) ->
-  $padding = $("<div></div>")
-  $padding.css("height", height-7)
-  $("#janish-col-" + col).append($padding)
+  if height - 7 - colHeight(col) > 0
+    $padding = $("<div></div>")
+    $padding.css("height", height - 7 - colHeight(col))
+    $("#janish-col-" + col).append($padding)
 
 
 templateJanishItem = _template($("#template-janish-item").html())
@@ -116,33 +132,45 @@ drawJanish = (janish, col) ->
 #    $("#janish-col-" + col).append($janishPlus)
   else
     illusion = illusionDict[janish["illusion"]]
-    console.log(illusion)
+    # Get minimum padding requirement
+    min = 0
+    for i in [(col+1)...20]
+      h = colHeight(i)
+      if h > min
+        min = h
+    drawPadding(col, min)
     $janish = $(templateJanishItem(illusion))
 #    $janish.attr("id", "janish-" + janish["id"])
     $("#janish-col-" + col).append($janish)
     if illusion.sub
-      height = $janish.position().top
+      count = 0
+      sub_list = []
       for key, output of illusion.sub
-        col++
-        drawPadding(col, height)
-        $("#janish-col-" + col).append(templateJanishSub({
-          "name": key,
+        sub_list.push({
+          "name": key
           "output": output
-        }))
-        if janish["sub"] && janish["sub"][key]
-          sub_janish = janish["sub"][key]
-          drawJanish(sub_janish, col)
-        $("#janish-col-" + col).append($janishPlus)
-  col
+        })
+      sub_list.reverse()
+      base_height = $janish.position().top
+      console.log base_height
+      for item in sub_list
+        name = item["name"]
+        output = item["output"]
+        c = col + Object.keys(illusion.sub).length - count
+        count++
+        drawPadding(c, base_height)
+        $("#janish-col-" + c).append(templateJanishSub(item))
+        if janish["sub"] && janish["sub"][name]
+          sub_janish = janish["sub"][name]
+          drawJanish(sub_janish, c)
+        $("#janish-col-" + c).append($janishPlus)
 
 
 loadJanish = ->
   console.log(panel_janish)
-  colHeight = []
   $janishPanel = $("#janish-panel")
   $janishPanel.html("")
   for i in [0...20]
-    colHeight.push(0)
     $item = $('<div class="janish-col"></div>')
     $item.attr("id", "janish-col-" + i)
     $janishPanel.append($item)
