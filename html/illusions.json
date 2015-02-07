@@ -27,8 +27,8 @@
         "name": "Print",
         "icon": "print",
         "description": "Print an input.",
-        "illusion": "PRINT",
-        "input": ["to_print"],
+        "illusion": "ECHO",
+        "input": ["content"],
         "output": []
       }
     ]

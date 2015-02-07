@@ -21,7 +21,7 @@ panel_janish = [
 
 _id = 0
 get_unique_id = (illusion) ->
-  return illusion["illusion"].toLowerCase() + "-" + (_id++)
+  return illusion["illusion"].toLowerCase() + "_" + (_id++)
 
 setInput = (value, path, variable) ->
   path = path.substring(5)
@@ -50,8 +50,8 @@ setInput = (value, path, variable) ->
           working = j
           break
   working["input"][variable] = value
-  console.log(working)
-  console.log(panel_janish)
+#  console.log(working)
+#  console.log(panel_janish)
   loadJanish()
 
 
@@ -356,9 +356,7 @@ drawJanish = (janish, col, path) ->
 
 
 loadJanish = ->
-  console.log(panel_janish)
-  if window.compile
-    compile(panel_janish)
+#  console.log(panel_janish)
   clearContext()
   $janishPanel = $("#janish-panel")
   $janishPanel.html("")
@@ -394,6 +392,14 @@ window.displayMonitor = ->
     $("#code").hide()
     $("#monitor").removeClass("current")
   else
+    if window.compile
+      console.log panel_janish
+      window.compile(panel_janish)
+    if window.server
+      server.on("compilationFinished", (ret)->
+        $("#pre-branish").html(ret["brainish"])
+        $("#pre-bash").html(ret["bash"])
+      )
     $("#code").show()
     $("#monitor").addClass("current")
   monitorShowed = ! monitorShowed

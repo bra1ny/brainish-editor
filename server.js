@@ -1,4 +1,4 @@
-var app = require('express')();
+ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var compiler = require('brainish-compiler-backend');
@@ -16,7 +16,9 @@ io.on('connection', function(client){
 
   client.on('compileJanish', function(msg){
     console.log(msg);
-    
+
+    console.log(JSON.stringify(compiler.simple2full(msg)));
+
     var bash = compiler.compileJSH(compiler.simple2full(msg));
     fs.writeFile('bash', bash, function (err,data) {
       if (err) {
@@ -28,7 +30,7 @@ io.on('connection', function(client){
       console.log (stdout);
     });
 
-    var brainish = compiler.decompile(msg)
+    var brainish = compiler.decompile(compiler.simple2full(msg))
     client.emit('compilationFinished', {'bash':bash, 'brainish': brainish});
   });
 

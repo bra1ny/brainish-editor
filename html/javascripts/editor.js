@@ -31,7 +31,7 @@
   _id = 0;
 
   get_unique_id = function(illusion) {
-    return illusion["illusion"].toLowerCase() + "-" + (_id++);
+    return illusion["illusion"].toLowerCase() + "_" + (_id++);
   };
 
   setInput = function(value, path, variable) {
@@ -70,8 +70,6 @@
       }
     }
     working["input"][variable] = value;
-    console.log(working);
-    console.log(panel_janish);
     return loadJanish();
   };
 
@@ -430,10 +428,6 @@
 
   loadJanish = function() {
     var $item, $janishPanel, end_p, i, start_p, _i;
-    console.log(panel_janish);
-    if (window.compile) {
-      compile(panel_janish);
-    }
     clearContext();
     $janishPanel = $("#janish-panel");
     $janishPanel.html("");
@@ -471,6 +465,16 @@
       $("#code").hide();
       $("#monitor").removeClass("current");
     } else {
+      if (window.compile) {
+        console.log(panel_janish);
+        window.compile(panel_janish);
+      }
+      if (window.server) {
+        server.on("compilationFinished", function(ret) {
+          $("#pre-branish").html(ret["brainish"]);
+          return $("#pre-bash").html(ret["bash"]);
+        });
+      }
       $("#code").show();
       $("#monitor").addClass("current");
     }
