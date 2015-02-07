@@ -155,7 +155,7 @@
   };
 
   deleteJanish = function(path) {
-    var i, j, json_path, p, p_id, p_sub, paths, working, _i, _len;
+    var base_path, i, id, j, json_path, p, p_id, p_sub, paths, working, _i, _len;
     path = path.substring(5);
     paths = path.split(".");
     working = panel_janish;
@@ -195,8 +195,10 @@
         }
       }
     }
-    console.log(eval("delete panel_janish" + json_path));
-    console.log(panel_janish);
+    id = json_path.substring(json_path.lastIndexOf("[") + 1, json_path.lastIndexOf("]"));
+    base_path = "panel_janish" + json_path.substring(0, json_path.lastIndexOf("["));
+    eval(base_path + ".splice(" + id + ",1)");
+    console.log(id, base_path);
     return loadJanish();
   };
 
@@ -452,7 +454,9 @@
   loadJanish = function() {
     var $item, $janishPanel, end_p, i, start_p, _i;
     console.log(panel_janish);
-    compile(panel_janish);
+    if (window.compile) {
+      compile(panel_janish);
+    }
     clearContext();
     $janishPanel = $("#janish-panel");
     $janishPanel.html("");

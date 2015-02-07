@@ -163,8 +163,12 @@ deleteJanish = (path) ->
           json_path +=  ("[" + i + "]")
           working = j
           break
-  console.log eval("delete panel_janish" + json_path)
-  console.log(panel_janish)
+#  console.log eval("delete panel_janish" + json_path)
+#  console.log(eval("panel_janish" + json_path))
+  id = json_path.substring(json_path.lastIndexOf("[")+1, json_path.lastIndexOf("]"))
+  base_path = "panel_janish" + json_path.substring(0, json_path.lastIndexOf("["))
+  eval(base_path+".splice(" + id + ",1)")
+  console.log(id, base_path)
   loadJanish()
 
 
@@ -382,7 +386,8 @@ drawJanish = (janish, col, path) ->
 
 loadJanish = ->
   console.log(panel_janish)
-  compile(panel_janish)
+  if window.compile
+    compile(panel_janish)
   clearContext()
   $janishPanel = $("#janish-panel")
   $janishPanel.html("")
