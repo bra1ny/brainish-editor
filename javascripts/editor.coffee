@@ -133,6 +133,42 @@ createJanish = (path, illusion)->
   loadJanish()
 
 
+deleteJanish = (path) ->
+  path = path.substring(5)
+  paths = path.split(".")
+  working = panel_janish
+  json_path = ""
+  for p in paths
+    if p.indexOf("|") >= 0
+      p_id = p.split("|")[0]
+      p_sub = p.split("|")[1]
+      #      console.log "working", working
+      if Array.isArray(working)
+        for i, j of working
+          if j["id"] == p_id
+            json_path += ("[" + i + "]")
+            if ! j["sub"]
+              j["sub"] = {}
+            if ! j["sub"][p_sub]
+              j["sub"][p_sub] = []
+            working = j["sub"][p_sub]
+            json_path += (".sub[\"" + p_sub + "\"]")
+            #          console.log "change working", working
+            break
+      else
+        working = working["sub"][p_sub]
+    else
+      for i, j of working
+        if j["id"] == p
+          json_path +=  ("[" + i + "]")
+          working = j
+          break
+  console.log eval("delete panel_janish" + json_path)
+  console.log(panel_janish)
+  loadJanish()
+
+
+
 logLocation = ->
   $illusion1 = $("#illusion-2")
   console.log $("#illusion-1").position()
@@ -255,7 +291,11 @@ setupDropEvent = ->
     currentDraggingType = DRAGGING_OUTPUT_FROM_PANEL
     currentDraggingData = "#" + id + "." + name
     console.log(currentDraggingData)
-
+  )
+  $(".janish").on("dblclick", ->
+    $this = $(this)
+    path = $this.attr("path")
+    deleteJanish(path)
   )
 #  $(".value-output").click (e) ->
 #    $this = $(this)
@@ -342,6 +382,7 @@ drawJanish = (janish, col, path) ->
 
 loadJanish = ->
   console.log(panel_janish)
+  compile(panel_janish)
   clearContext()
   $janishPanel = $("#janish-panel")
   $janishPanel.html("")
