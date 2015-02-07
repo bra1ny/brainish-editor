@@ -99,17 +99,18 @@ loadIllusions = ->
 
 
 setupDropEvent = ->
-  $(".illusion-plus").on("dragover", (e) ->
+  $(".janish-plus").on("dragover", (e) ->
     e.preventDefault()
     $(this).addClass "drag-over"
   )
-  $(".illusion-plus").on("dragleave", (e) ->
+  $(".janish-plus").on("dragleave", (e) ->
     e.preventDefault()
     $(this).removeClass "drag-over"
   )
-  $(".illusion-plus").on("drop",(e) ->
+  $(".janish-plus").on("drop",(e) ->
     console.log currentDraggingType
     console.log currentDraggingData
+    console.log $(this).attr("path")
   )
 
 
@@ -129,10 +130,15 @@ drawPadding = (col, height) ->
     $padding.css("height", height - colHeight(col))
     $("#janish-col-" + col).append($padding)
 
+janishPlusHtml = $("#template-janish-plus").html()
+createPlus = (col, path) ->
+  $janishPlus = $(janishPlusHtml)
+  $janishPlus.attr("path", "path")
+  $("#janish-col-" + col).append($janishPlus)
+
 
 templateJanishItem = _template($("#template-janish-item").html())
 templateJanishSub = _template($("#template-janish-sub").html())
-$janishPlus = $("#template-janish-plus").html()
 drawJanish = (janish, col) ->
   if Array.isArray(janish)
     for j in janish
@@ -170,7 +176,7 @@ drawJanish = (janish, col) ->
         if janish["sub"] && janish["sub"][name]
           sub_janish = janish["sub"][name]
           drawJanish(sub_janish, c)
-        $("#janish-col-" + c).append($janishPlus)
+        createPlus(c, "path")
 
 
 loadJanish = ->
@@ -182,7 +188,8 @@ loadJanish = ->
     $item.attr("id", "janish-col-" + i)
     $janishPanel.append($item)
   drawJanish(panel_janish, 0)
-  $("#janish-col-0").append($janishPlus)
+  createPlus(0, "path")
+  setupDropEvent()
 
 
 documentReady = ->
