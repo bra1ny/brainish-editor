@@ -1,0 +1,156 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+#header {
+  background: #6a5545;
+  color: #ffffff;
+  height: 50px;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+}
+h1 {
+  margin: 0;
+  font-size: 23px;
+  line-height: 50px;
+  height: 50px;
+  padding: 0 20px;
+}
+#illusions {
+  background: #eeeeee;
+  width: 350px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding-top: 50px;
+  z-index: 50;
+}
+#illusion-type {
+  background: #99bf75;
+  width: 70px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  float: left;
+}
+#illusion-type a {
+  display: block;
+  width: 70px;
+  height: 65px;
+  text-align: center;
+  line-height: 65px;
+  color: #ffffff;
+  font-size: 30px;
+}
+#illusion-type a:hover,
+#illusion-type a.current {
+  background: #7eaa59;
+}
+#illusion-list {
+  height: 100%;
+  float: left;
+}
+#illusion-list .illusion-option {
+  width: 280px;
+  height: 60px;
+  background: #e9e9e9;
+  color: #777777;
+  cursor: pointer !important;
+}
+#illusion-list .illusion-option .icon {
+  position: absolute;
+  font-size: 30px;
+  margin: 7px 15px;
+}
+#illusion-list .illusion-option .name {
+  position: absolute;
+  margin: 10px 0 0 55px;
+}
+#illusion-list .illusion-option .description {
+  position: absolute;
+  margin: 30px 0 0 55px;
+  font-size: 12px;
+}
+#illusion-list .illusion-option:hover {
+  background: #eeeeee;
+}
+#panel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  padding: 50px 0 0 350px;
+}
+#panel .illusion {
+  position: absolute;
+  background: #eeeeee;
+  width: 300px;
+  color: #777777;
+  margin: 40px 80px;
+}
+#panel .illusion .input {
+  margin: 10px 10px 0 10px;
+  background: #ffffff;
+  text-align: center;
+}
+#panel .illusion .icon {
+  text-align: center;
+  font-size: 25px;
+}
+#panel .illusion .name {
+  text-align: center;
+  font-size: 16px;
+}
+#panel .illusion .output {
+  margin: 5px 10px 10px 10px;
+  background: #ffffff;
+  text-align: center;
+}
+#panel .illusion .value-item {
+  display: inline-block;
+}
+#panel .illusion .value-input,
+#panel .illusion .value-output {
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+  margin: 4px 0 ;
+}
+#panel .illusion .value-input {
+  background: #776554;
+  color: #ffffff;
+  padding-left: 5px;
+}
+#panel .illusion .value-input:after {
+  content: '';
+  position: absolute;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 11px solid #776554;
+  z-index: 10;
+}
+#panel .illusion .value-output {
+  background: #8eba69;
+  color: #ffffff;
+  padding: 0 5px 0 15px;
+  margin-left: 0px;
+}
+#panel .illusion .value-output:before {
+  content: '';
+  position: absolute;
+  margin-left: -15px;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 11px solid #ffffff;
+  z-index: 5;
+}
+#panel .illusion .value-no {
+  background: #cccccc;
+}
