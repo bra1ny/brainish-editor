@@ -30,6 +30,22 @@
         "illusion": "ECHO",
         "input": ["content"],
         "output": []
+      },
+      {
+        "name": "GOOGLE_SEARCH_URL",
+        "icon": "print",
+        "description": "GOOGLE_SEARCH_URL.",
+        "illusion": "GOOGLE_SEARCH_URL",
+        "input": ["keyword"],
+        "output": ["url"]
+      },
+      {
+        "name": "GOOGLE_SEARCH",
+        "icon": "print",
+        "description": "GOOGLE_SEARCH",
+        "illusion": "GOOGLE_SEARCH",
+        "input": ["url"],
+        "output": ["result"]
       }
     ]
   },
