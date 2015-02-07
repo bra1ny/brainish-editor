@@ -1,4 +1,4 @@
- var app = require('express')();
+var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var compiler = require('brainish-compiler-backend');
@@ -31,16 +31,19 @@ io.on('connection', function(client){
   });
 
   client.on('run', function(){
-    fs.readFile('./bash', 'utf8', function (err,data) {
-      if (err) {
-        return console.log(err);
-      }
-      console.log(data);
-      exec(data, function(error, stdout, stderr){ 
-        console.log (stdout);
-        client.emit('result',stdout);
-      });
-    });
+    console.log ("aaa");
+    // fs.readFile('./bash', 'utf8', function (err,data) {
+    //   if (err) {
+    //     return console.log(err);
+    //   }
+    //   console.log(data);
+    //   exec(data, function(error, stdout, stderr){ 
+    //     console.log (stdout);
+    //     client.emit('result',stdout);
+    //   });
+    // });
+    var bash = compiler.compileJSH(compiler.simple2full(msg));
+    client.emit ('result', bash);
   });
   // client.on('compileBrainish', function(msg){
     

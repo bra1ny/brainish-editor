@@ -1,22 +1,23 @@
 [
   {
-    "id": "google_search_url_0",
+    "id": "google_search_url",
     "illusion": "GOOGLE_SEARCH_URL",
-    "input": {"keyword": "hello world"}
+    "input": {
+      "keyword": "Hello"
+      }
   },
   {
-    "id": "echo_1",
-    "illusion": "ECHO",
-    "input": {"content": "#google_search_url_0.url"}
-  },
-  {
-    "id": "google_search_2",
+    "id": "google_search",
     "illusion": "GOOGLE_SEARCH",
-    "input": {"url": "#google_search_url_0.url"}
+    "input": {
+      "url": "#google_search_url.url"
+    }
   },
   {
-    "id": "echo_3",
-    "illusion": "ECHO",
-    "input": {"content": "#google_search_2.result"}
+    "id": "printf",
+    "illusion": "PRINTF",
+    "input": {
+      "content": "#google_search.result"
+    }
   }
 ]
