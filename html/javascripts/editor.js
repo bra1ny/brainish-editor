@@ -109,8 +109,7 @@
     janish = {
       "id": get_unique_id(illusion),
       "illusion": illusion["illusion"],
-      "input": {},
-      "output": {}
+      "input": {}
     };
     try {
       eval("panel_janish" + json_path + ".push(janish)");
@@ -474,6 +473,7 @@
     } else {
       if (window.compile) {
         console.log(panel_janish);
+        console.log(JSON.stringify(panel_janish));
         window.compile(panel_janish);
       }
       if (window.server) {

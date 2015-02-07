@@ -87,7 +87,6 @@ createJanish = (path, illusion)->
     "id": get_unique_id(illusion)
     "illusion": illusion["illusion"]
     "input": {}
-    "output": {}
   }
 
   try
@@ -400,6 +399,7 @@ window.displayMonitor = ->
   else
     if window.compile
       console.log panel_janish
+      console.log JSON.stringify(panel_janish)
       window.compile(panel_janish)
     if window.server
       server.on("compilationFinished", (ret)->
