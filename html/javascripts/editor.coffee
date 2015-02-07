@@ -10,6 +10,13 @@ DRAGGING_ILLUSION_FROM_PANEL = 2
 DRAGGING_OUTPUT_FROM_PANEL = 3
 
 panel_janish = [
+  {
+    "id": "list_file_1",
+    "illusion": "LS",
+    "input": {
+      "path": "."
+    }
+  }
 ]
 
 _id = 0
@@ -305,6 +312,8 @@ drawJanish = (janish, col, path) ->
 #    $("#janish-col-" + col).append($janishPlus)
   else
     illusion = illusionDict[janish["illusion"]]
+#    console.log(path, janish, illusion)
+#    console.log(illusionDict)
     # Get minimum padding requirement
     min = 0
     for i in [(col+1)...20]
@@ -366,22 +375,21 @@ loadJanish = ->
 
 
 documentReady = ->
-  sample = document.URL.split("?")[1]
-  if sample
-    $.ajax
-      "url": "sample/" + sample + ".json"
-      "dataType": "json"
-      "success": (data) ->
-        panel_janish = data
-        loadJanish()
-
   $.ajax
     "url": "illusions.json"
     "dataType": "json"
     "success": (data) ->
       illusions = data
       loadIllusions()
-      loadJanish()
+      sample = document.URL.split("?")[1]
+      if sample
+        $.ajax
+          "url": "sample/" + sample + ".json"
+          "dataType": "json"
+          "success": (data) ->
+            panel_janish = data
+            console.log(panel_janish)
+            loadJanish()
 
 
 $(document).ready documentReady
@@ -390,6 +398,8 @@ $(document).ready documentReady
 
 monitorShowed = false
 window.displayMonitor = ->
+  $("#pre-branish").html("")
+  $("#pre-bash").html("")
   if monitorShowed
     $("#code").hide()
     $("#monitor").removeClass("current")

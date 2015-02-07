@@ -18,7 +18,15 @@
 
   DRAGGING_OUTPUT_FROM_PANEL = 3;
 
-  panel_janish = [];
+  panel_janish = [
+    {
+      "id": "list_file_1",
+      "illusion": "LS",
+      "input": {
+        "path": "."
+      }
+    }
+  ];
 
   _id = 0;
 
@@ -437,25 +445,25 @@
   };
 
   documentReady = function() {
-    var sample;
-    sample = document.URL.split("?")[1];
-    if (sample) {
-      $.ajax({
-        "url": "sample/" + sample + ".json",
-        "dataType": "json",
-        "success": function(data) {
-          panel_janish = data;
-          return loadJanish();
-        }
-      });
-    }
     return $.ajax({
       "url": "illusions.json",
       "dataType": "json",
       "success": function(data) {
+        var sample;
         illusions = data;
         loadIllusions();
-        return loadJanish();
+        sample = document.URL.split("?")[1];
+        if (sample) {
+          return $.ajax({
+            "url": "sample/" + sample + ".json",
+            "dataType": "json",
+            "success": function(data) {
+              panel_janish = data;
+              console.log(panel_janish);
+              return loadJanish();
+            }
+          });
+        }
       }
     });
   };
@@ -465,6 +473,8 @@
   monitorShowed = false;
 
   window.displayMonitor = function() {
+    $("#pre-branish").html("");
+    $("#pre-bash").html("");
     if (monitorShowed) {
       $("#code").hide();
       $("#monitor").removeClass("current");
