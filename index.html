@@ -12,21 +12,8 @@
 </div>
 <div id="illusions">
     <ul id="illusion-type">
-        <li><a href="#" class="current"><i class="fa fa-asterisk"></i></a></li>
-        <li><a href="#"><i class="fa fa-file"></i></a></li>
-        <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
     </ul>
     <div id="illusion-list">
-        <div class="illusion-option" draggable="true">
-            <div class="icon"><i class="fa fa-check"></i></div>
-            <div class="name">Check Condition</div>
-            <div class="description">Execute some illusions if condition</div>
-        </div>
-        <div class="illusion-option" draggable="true">
-            <div class="icon"><i class="fa fa-code"></i></div>
-            <div class="name">Check Condition</div>
-            <div class="description">Execute some illusions if condition</div>
-        </div>
     </div>
 </div>
 <div id="panel">
@@ -99,7 +86,23 @@
         <canvas id="panel-background" width="2000" height="2000"></canvas>
     </div>
 </div>
+<script id="template-illusion-type-item" type="text/html">
+    <% if(current) { %>
+    <li><a href="#" class="current"><i class="fa fa-<%-icon%>"></i></a></li>
+    <% } else { %>
+    <li><a href="#"><i class="fa fa-<%-icon%>"></i></a></li>
+    <% } %>
+</script>
+<script id="template-illusion-item" type="text/html">
+    <div class="illusion-option" draggable="true">
+        <div class="icon"><i class="fa fa-<%-icon%>"></i></div>
+        <div class="name"><%-name%></div>
+        <div class="description"><%-description%></div>
+    </div>
+    <hr />
+</script>
 <script type="application/javascript" src="javascripts/jquery.js"></script>
+<script type="application/javascript" src="javascripts/underscore-template.min.js"></script>
 <script type="application/javascript" src="javascripts/editor.js"></script>
 </body>
 </html>
