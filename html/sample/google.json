@@ -1,0 +1,22 @@
+[
+  {
+    "id": "google_search_url_0",
+    "illusion": "GOOGLE_SEARCH_URL",
+    "input": {"keyword": "hello world"}
+  },
+  {
+    "id": "echo_1",
+    "illusion": "ECHO",
+    "input": {"content": "#google_search_url_0.url"}
+  },
+  {
+    "id": "google_search_2",
+    "illusion": "GOOGLE_SEARCH",
+    "input": {"url": "#google_search_url_0.url"}
+  },
+  {
+    "id": "echo_3",
+    "illusion": "ECHO",
+    "input": {"content": "#google_search_2.result"}
+  }
+]
