@@ -23,15 +23,23 @@ io.on('connection', function(client){
         return console.log(err);
       } 
     });
-    
-    exec(bash, function(error, stdout, stderr){ 
-      console.log (stdout);
-    });
 
     var brainish = compiler.decompile(msg)
     client.emit('compilationFinished', {'bash':bash, 'brainish': brainish});
   });
 
+  client.on('run', function(){
+    fs.readFile('./bash', 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(data);
+      exec(data, function(error, stdout, stderr){ 
+        console.log (stdout);
+        client.emit('result',stdout);
+      });
+    });
+  });
   // client.on('compileBrainish', function(msg){
     
   //   var bash = compiler.compileJSH(msg);
