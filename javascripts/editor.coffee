@@ -59,6 +59,23 @@ logLocation = ->
   console.log $("#illusion-3").position()
 
 
+drawLine = (p1_x, p1_y, p2_x, p2_y) ->
+  # FILL IN CANVAS ID
+  c = document.getElementById('panel-background')
+  # 2d line
+  context = c.getContext('2d')
+  # starting point
+  context.moveTo p1_x, p1_y
+  # ending point
+  context.lineTo p2_x, p2_y
+  # set line color
+  context.strokeStyle = '#A4A4A4'
+  # set line width
+  context.lineWidth = 4
+  # line up
+  context.stroke()
+
+
 loadIllusions = ->
   for illusionType in illusions
     for illusion in illusionType["list"]
@@ -166,6 +183,7 @@ drawJanish = (janish, col) ->
         })
       sub_list.reverse()
       base_height = $janish.position().top
+      drawLine(col*380 + 100, base_height + 60, (col+sub_list.length)*380 + 100, base_height + 60)
       for item in sub_list
         name = item["name"]
         output = item["output"]
@@ -177,6 +195,9 @@ drawJanish = (janish, col) ->
           sub_janish = janish["sub"][name]
           drawJanish(sub_janish, c)
         createPlus(c, "path")
+        left = c*380 + 230
+        end_top = $("#janish-col-" + c).children().last().position().top
+        drawLine(left, base_height+60, left, end_top+70)
 
 
 loadJanish = ->
@@ -189,6 +210,9 @@ loadJanish = ->
     $janishPanel.append($item)
   drawJanish(panel_janish, 0)
   createPlus(0, "path")
+  start_p = $("#janish-col-0").children().first().position()
+  end_p = $("#janish-col-0").children().last().position()
+  drawLine(start_p.left + 150, start_p.top + 30, end_p.left + 150, end_p.top + 70)
   setupDropEvent()
 
 
