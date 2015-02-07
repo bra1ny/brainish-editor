@@ -374,7 +374,7 @@ documentReady = ->
       illusions = data
       loadIllusions()
       loadJanish()
-      sample = document.URL.split("?")[1]
+      sample = document.URL.split("?")[1].replace("#", "")
       if sample
         $.ajax
           "url": "sample/" + sample + ".json"
