@@ -43,7 +43,7 @@
         "description": "List all the files in a directory.",
         "illusion": "LS",
         "input": ["path"],
-        "output": ["file_list"]
+        "output": ["fileList"]
       },
       {
         "name": "Filter",

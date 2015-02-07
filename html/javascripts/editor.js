@@ -18,15 +18,7 @@
 
   DRAGGING_OUTPUT_FROM_PANEL = 3;
 
-  panel_janish = [
-    {
-      "id": "list_file_1",
-      "illusion": "LS",
-      "input": {
-        "path": "."
-      }
-    }
-  ];
+  panel_janish = [];
 
   _id = 0;
 
@@ -445,6 +437,18 @@
   };
 
   documentReady = function() {
+    var sample;
+    sample = document.URL.split("?")[1];
+    if (sample) {
+      $.ajax({
+        "url": "sample/" + sample + ".json",
+        "dataType": "json",
+        "success": function(data) {
+          panel_janish = data;
+          return loadJanish();
+        }
+      });
+    }
     return $.ajax({
       "url": "illusions.json",
       "dataType": "json",
