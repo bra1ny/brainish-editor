@@ -18,7 +18,8 @@
 </div>
 <div id="panel">
     <div id="panel-move">
-        <div id="illusion-panel">
+        <div id="janish-panel">
+            <!--
             <div class="illusion-col">
                 <div class="illusion" id="illusion-1" draggable="true">
                     <div class="input">
@@ -82,6 +83,7 @@
                     <i class="fa fa-plus"></i>
                 </div>
             </div>
+            -->
         </div>
         <canvas id="panel-background" width="2000" height="2000"></canvas>
     </div>
@@ -100,6 +102,44 @@
         <div class="description"><%-description%></div>
     </div>
     <hr />
+</script>
+<script id="template-janish-item" type="text/html">
+    <div class="janish" draggable="true">
+        <div class="input">
+            <% for (var i in input) { %>
+            <div class="value-item">
+                <div class="value-input"><%- input[i] %></div>
+                <div class="value-output value-no" draggable="true">null</div>
+            </div>
+            <% } %>
+        </div>
+        <div class="icon"><i class="fa fa-<%- icon %>"></i></div>
+        <div class="name"><%- name %></div>
+        <div class="output">
+            <% for (var i in output) { %>
+            <div class="value-item">
+                <div class="value-output"><%- output[i] %></div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</script>
+<script id="template-janish-sub" type="text/html">
+    <div class="janish">
+        <div class="name"><%- name %></div>
+        <div class="output">
+            <% for (var i in output) { %>
+            <div class="value-item">
+                <div class="value-output"><%- output[i] %></div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</script>
+<script id="template-janish-plus" type="text/html">
+    <div class="janish janish-plus">
+        <i class="fa fa-plus"></i>
+    </div>
 </script>
 <script type="application/javascript" src="javascripts/jquery.js"></script>
 <script type="application/javascript" src="javascripts/underscore-template.min.js"></script>

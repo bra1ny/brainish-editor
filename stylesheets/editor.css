@@ -62,7 +62,7 @@ h1 {
   margin: 0;
   padding: 0;
   border: 0;
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid #cacaca;
 }
 #illusion-list .illusion-option {
   width: 280px;
@@ -95,56 +95,56 @@ h1 {
   padding: 50px 0 0 350px;
   overflow: auto;
 }
-#panel #illusion-panel {
+#panel #janish-panel {
   position: absolute;
 }
-#panel .illusion-col {
+#panel .janish-col {
   margin: 20px 0 0 80px;
   float: left;
 }
-#panel .illusion {
+#panel .janish {
   background: #eeeeee;
   width: 300px;
   color: #777777;
   padding: 10px 0;
   margin: 40px 0;
 }
-#panel .illusion .input {
+#panel .janish .input {
   margin: 10px 10px 0 10px;
   background: #ffffff;
   text-align: center;
   padding: 2px 0;
 }
-#panel .illusion .icon {
+#panel .janish .icon {
   text-align: center;
   font-size: 25px;
 }
-#panel .illusion .name {
+#panel .janish .name {
   text-align: center;
   font-size: 16px;
 }
-#panel .illusion .output {
+#panel .janish .output {
   margin: 5px 10px 10px 10px;
   background: #ffffff;
   text-align: center;
   padding: 2px 0;
 }
-#panel .illusion .value-item {
+#panel .janish .value-item {
   display: inline-block;
 }
-#panel .illusion .value-input,
-#panel .illusion .value-output {
+#panel .janish .value-input,
+#panel .janish .value-output {
   display: inline-block;
   height: 22px;
   line-height: 22px;
   margin: 2px 0 ;
 }
-#panel .illusion .value-input {
+#panel .janish .value-input {
   background: #776554;
   color: #ffffff;
   padding-left: 5px;
 }
-#panel .illusion .value-input:after {
+#panel .janish .value-input:after {
   content: '';
   position: absolute;
   border-top: 11px solid transparent;
@@ -152,13 +152,13 @@ h1 {
   border-left: 11px solid #776554;
   z-index: 10;
 }
-#panel .illusion .value-output {
+#panel .janish .value-output {
   background: #8eba69;
   color: #ffffff;
   padding: 0 5px 0 15px;
   margin-left: 0px;
 }
-#panel .illusion .value-output:before {
+#panel .janish .value-output:before {
   content: '';
   position: absolute;
   margin-left: -15px;
@@ -167,14 +167,17 @@ h1 {
   border-left: 11px solid #ffffff;
   z-index: 5;
 }
-#panel .illusion .value-no {
+#panel .janish .value-no {
   background: #cccccc;
 }
-#panel .illusion-plus {
+#panel .janish-plus {
   border: 4px dotted #eeeeee;
   background: #ffffff;
   text-align: center;
   color: #aaaaaa;
+}
+#panel .janish-plus.drag-over {
+  border: 4px dotted #cccccc;
 }
 #panel-move {
   width: 2000px;

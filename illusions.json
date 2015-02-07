@@ -9,21 +9,26 @@
         "description": "Execute illusions under condition.",
         "illusion": "IF",
         "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
+        "output": ["output1", "output2"]
       },
       {
         "name": "For Each",
         "icon": "circle",
         "description": "Iterate through a list.",
         "illusion": "FOR",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
+        "input": ["list"],
+        "output": [],
         "sub": {
           "body": "iterator"
         }
+      },
+      {
+        "name": "Print",
+        "icon": "print",
+        "description": "Print an input.",
+        "illusion": "PRINT",
+        "input": ["to_print"],
+        "output": []
       }
     ]
   },
@@ -35,8 +40,9 @@
         "name": "List File",
         "icon": "file",
         "description": "List all the files in a directory.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
+        "illusion": "LS",
+        "input": ["path"],
+        "output": ["file_list"],
         "sub": {
           "body": "iterator"
         }

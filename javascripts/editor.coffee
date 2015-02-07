@@ -1,4 +1,5 @@
 illusions = null
+illusionDict = {}
 currentIllusionList = 0
 
 currentDraggingType = 0
@@ -8,6 +9,33 @@ DRAGGING_ILLUSION_FROM_LIST = 1
 DRAGGING_ILLUSION_FROM_PANEL = 2
 DRAGGING_OUTPUT_FROM_PANEL = 3
 
+panel_janish = [
+  {
+    "id": "list_file_1",
+    "illusion": "LS",
+    "input": {
+      "path": "."
+    }
+  }
+  {
+    "id": "for_each_1",
+    "illusion": "FOR",
+    "input": {
+      "list": "#list_file_1.file_list"
+    },
+    "sub": {
+      "body":
+        {
+          "id": "print_1",
+          "illusion": "PRINT",
+          "input": {
+            "content": "#for_each_1.iterator"
+          }
+        }
+    }
+  }
+]
+
 
 logLocation = ->
   $illusion1 = $("#illusion-2")
@@ -16,8 +44,10 @@ logLocation = ->
   console.log $("#illusion-3").position()
 
 
-
 loadIllusions = ->
+  for illusionType in illusions
+    for illusion in illusionType["list"]
+      illusionDict[illusion["illusion"]] = illusion
   templateIllusionTypeItem = _template($("#template-illusion-type-item").html())
   $illusionType = $("#illusion-type")
   $illusionType.html("")
@@ -56,11 +86,63 @@ loadIllusions = ->
 setupDropEvent = ->
   $(".illusion-plus").on("dragover", (e) ->
     e.preventDefault()
+    $(this).addClass "drag-over"
+  )
+  $(".illusion-plus").on("dragleave", (e) ->
+    e.preventDefault()
+    $(this).removeClass "drag-over"
   )
   $(".illusion-plus").on("drop",(e) ->
     console.log currentDraggingType
     console.log currentDraggingData
   )
+
+
+colHeight = []
+
+drawPadding = (col, height) ->
+
+
+templateJanishItem = _template($("#template-janish-item").html())
+templateJanishSub = _template($("#template-janish-sub").html())
+$janishPlus = $("#template-janish-plus").html()
+drawJanish = (janish, col) ->
+  if Array.isArray(janish)
+    for j in janish
+      drawJanish(j, col)
+    $("#janish-col-" + col).append($janishPlus)
+  else
+    illusion = illusionDict[janish["illusion"]]
+    console.log(illusion)
+    $janish = templateJanishItem(illusion)
+    $("#janish-col-" + col).append($janish)
+    if janish.sub
+      for key, sub_janish of janish.sub
+        col++
+        console.log key
+        console.log sub_janish
+        $("#janish-col-" + col).append(templateJanishSub({
+          "name": "Sub Janish",
+          "output": ["output"]
+        }))
+        drawJanish(sub_janish, col)
+        if ! Array.isArray(sub_janish)
+          $("#janish-col-" + col).append($janishPlus)
+  col
+
+
+loadJanish = ->
+  console.log(panel_janish)
+  colHeight = []
+  $janishPanel = $("#janish-panel")
+  $janishPanel.html("")
+  for i in [0...20]
+    colHeight.push(0)
+    $item = $('<div class="janish-col"></div>')
+    $item.attr("id", "janish-col-" + i)
+    $janishPanel.append($item)
+  drawJanish(panel_janish, 0)
+
 
 documentReady = ->
   $.ajax
@@ -69,6 +151,7 @@ documentReady = ->
     "success": (data) ->
       illusions = data
       loadIllusions()
+      loadJanish()
   setupDropEvent()
 
 
