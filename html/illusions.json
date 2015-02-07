@@ -4,14 +4,6 @@
     "icon": "asterisk",
     "list": [
       {
-        "name": "Check Condition",
-        "icon": "check",
-        "description": "Execute illusions under condition.",
-        "illusion": "IF",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"]
-      },
-      {
         "name": "For Each",
         "icon": "circle",
         "description": "Iterate through a list.",
@@ -24,10 +16,18 @@
         }
       },
       {
+        "name": "Echo",
+        "icon": "print",
+        "description": "Echo an content.",
+        "illusion": "ECHO",
+        "input": ["content"],
+        "output": []
+      },
+      {
         "name": "Print",
         "icon": "print",
         "description": "Print an input.",
-        "illusion": "ECHO",
+        "illusion": "PRINTF",
         "input": ["content"],
         "output": []
       }
