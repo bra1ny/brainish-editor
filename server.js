@@ -8,9 +8,10 @@ var exec = require('child_process').exec;
 
 app.use(require('express').static(__dirname + '/html'));
 
-app.get('/bash', function(req, res){
+app.get('/bash.sh', function(req, res){
   res.sendFile(__dirname + '/bash');
 });
+
 console.log(compiler);
 io.on('connection', function(client){
 
