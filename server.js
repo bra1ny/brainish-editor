@@ -15,8 +15,9 @@ console.log(compiler);
 io.on('connection', function(client){
 
   client.on('compileJanish', function(msg){
+    console.log(msg);
     
-    var bash = compiler.compileJSH(msg);
+    var bash = compiler.compileJSH(compiler.simple2full(msg));
     fs.writeFile('bash', bash, function (err,data) {
       if (err) {
         return console.log(err);
