@@ -452,6 +452,7 @@
         var sample;
         illusions = data;
         loadIllusions();
+        loadJanish();
         sample = document.URL.split("?")[1];
         if (sample) {
           return $.ajax({

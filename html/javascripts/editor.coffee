@@ -381,6 +381,7 @@ documentReady = ->
     "success": (data) ->
       illusions = data
       loadIllusions()
+      loadJanish()
       sample = document.URL.split("?")[1]
       if sample
         $.ajax
