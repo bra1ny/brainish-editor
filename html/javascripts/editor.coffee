@@ -10,13 +10,6 @@ DRAGGING_ILLUSION_FROM_PANEL = 2
 DRAGGING_OUTPUT_FROM_PANEL = 3
 
 panel_janish = [
-  {
-    "id": "list_file_1",
-    "illusion": "LS",
-    "input": {
-      "path": "."
-    }
-  }
 ]
 
 _id = 0
