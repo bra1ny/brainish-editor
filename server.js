@@ -11,16 +11,10 @@ app.use(require('express').static(__dirname + '/html'));
 app.get('/bash', function(req, res){
   res.sendFile(__dirname + '/bash');
 });
-
+console.log(compiler);
 io.on('connection', function(client){
-  // console.log('a user connected');
 
-  // client.on('join', function(id){
-  //   client.name = id;
-  //   appClients.push(client);
-  // })
-
-  client.on('compile', function(msg){
+  client.on('compileJanish', function(msg){
     
     var bash = compiler.compileJSH(msg);
     fs.writeFile('bash', bash, function (err,data) {
@@ -32,8 +26,25 @@ io.on('connection', function(client){
     exec(bash, function(error, stdout, stderr){ 
       console.log (stdout);
     });
-    // client.emit('compilationFinished', message);
+
+    var brainish = compiler.decompile(msg)
+    client.emit('compilationFinished', {'bash':bash, 'brainish': brainish});
   });
+
+  // client.on('compileBrainish', function(msg){
+    
+  //   var bash = compiler.compileJSH(msg);
+  //   fs.writeFile('bash', bash, function (err,data) {
+  //     if (err) {
+  //       return console.log(err);
+  //     } 
+  //   });
+    
+  //   exec(bash, function(error, stdout, stderr){ 
+  //     console.log (stdout);
+  //   });
+  //   client.emit('compilationFinished', message);
+  // });
 
   client.on('download', function(){
     client.sendFile(__dirname + '/bash');
