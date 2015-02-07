@@ -239,3 +239,22 @@ documentReady = ->
 
 
 $(document).ready documentReady
+
+
+
+monitorShowed = false
+window.displayMonitor = ->
+  if monitorShowed
+    $("#code").hide()
+    $("#monitor").removeClass("current")
+  else
+    $("#code").show()
+    $("#monitor").addClass("current")
+  monitorShowed = ! monitorShowed
+
+
+window.displayRun = ->
+  $("#run").show()
+
+window.hideRun = ->
+  $("#run").hide()

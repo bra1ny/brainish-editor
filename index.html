@@ -9,6 +9,10 @@
 <body>
 <div id="header">
     <h1>Brainish Editor</h1>
+    <div id="top-bars">
+        <li><a href="#" onclick="displayRun()"><i class="fa fa-play"></i></a></li>
+        <li><a href="#" id="monitor" onclick="displayMonitor()"><i class="fa fa-desktop"></i></a></li>
+    </div>
 </div>
 <div id="illusions">
     <ul id="illusion-type">
@@ -18,74 +22,25 @@
 </div>
 <div id="panel">
     <div id="panel-move">
-        <div id="janish-panel">
-            <!--
-            <div class="illusion-col">
-                <div class="illusion" id="illusion-1" draggable="true">
-                    <div class="input">
-                        <div class="value-item">
-                            <div class="value-input">File List</div>
-                            <div class="value-output" draggable="true">file_list_1</div>
-                        </div>
-                        <div class="value-item">
-                            <div class="value-input">File List</div>
-                            <div class="value-output value-no">none</div>
-                        </div>
-                        <div class="value-item">
-                            <div class="value-input">File List</div>
-                            <div class="value-output value-no">none</div>
-                        </div>
-                    </div>
-                    <div class="icon"><i class="fa fa-code"></i></div>
-                    <div class="name">Check Condition</div>
-                    <div class="output">
-                        <div class="value-item">
-                            <div class="value-output">file_list_1</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="illusion" id="illusion-2">
-                    <div class="input">
-                        <div class="value-item">
-                            <div class="value-input">File List</div>
-                            <div class="value-output">file_list_1</div>
-                        </div>
-                    </div>
-                    <div class="icon"><i class="fa fa-code"></i></div>
-                    <div class="name">Check Condition</div>
-                    <div class="output">
-                        <div class="value-item">
-                            <div class="value-output">file_list_1</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="illusion illusion-plus">
-                    <i class="fa fa-plus"></i>
-                </div>
-            </div>
-            <div class="illusion-col">
-                <div class="illusion" id="illusion-3">
-                    <div class="input">
-                        <div class="value-item">
-                            <div class="value-input">File List</div>
-                            <div class="value-output">file_list_1</div>
-                        </div>
-                    </div>
-                    <div class="icon"><i class="fa fa-code"></i></div>
-                    <div class="name">Check Condition</div>
-                    <div class="output">
-                        <div class="value-item">
-                            <div class="value-output">file_list_1</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="illusion illusion-plus">
-                    <i class="fa fa-plus"></i>
-                </div>
-            </div>
-            -->
-        </div>
+        <div id="janish-panel"></div>
         <canvas id="panel-background" width="2000" height="2000"></canvas>
+    </div>
+</div>
+<div id="code">
+    <div id="code-brainish">
+        <pre>line 1
+        line 2</pre>
+    </div>
+    <div id="code-bash">
+        <pre>line 1
+        line 2</pre>
+    </div>
+</div>
+<div id="run">
+    <textarea id="bash-script"></textarea>
+    <div>
+        <a href="#" id="download"><i class="fa fa-download"></i> Download Bash</a>
+        <a href="#" onclick="hideRun()">Done</a>
     </div>
 </div>
 <script id="template-illusion-type-item" type="text/html">

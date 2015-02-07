@@ -28,6 +28,27 @@ h1 {
   padding: 0 20px;
 }
 
+#top-bars {
+  float: right;
+  margin: -50px 30px 0 0;
+  padding: 0;
+  li {
+    display: inline-block;
+    a {
+      display: block;
+      height: 50px;
+      width: 65px;
+      font-size: 25px;
+      color: #ffffff;
+      line-height: 50px;
+      text-align: center;
+      &:hover, &.current {
+        background: rgba(255, 255 ,255, 0.2);
+      }
+    }
+  }
+}
+
 #illusions {
   background: #eeeeee;
   width: 350px;
@@ -206,4 +227,61 @@ h1 {
 #panel-background {
   width: 100%;
   height: 100%;
+}
+
+#code {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 400px;
+  height: 510px;
+  z-index: 500;
+  background: #99bf75;
+  div {
+    height: 240px;
+    margin: 10px;
+    background: #ffffff;
+    overflow-x: auto;
+    pre {
+      margin: 0;
+      padding: 5px;
+      color: #777777;
+      font-size: 12px;
+      font-family: Consolas, monospace;
+    }
+  }
+}
+
+#run {
+  display: none;
+  background: #99bf75;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 130px;
+  z-index: 500;
+  margin: -65px 0 0 -250px;
+  textarea {
+    width: 480px;
+    margin: 10px;
+    height: 75px;
+    border: none;
+    resize: none;
+    padding: 10px;
+    font-family: Consolas, monospace;
+  }
+  div {
+    text-align: center;
+  }
+  a#download {
+    background: #6a5545;
+    color: #ffffff;
+  }
+  a {
+    color: #6a5545;
+    text-decoration: none;
+    padding: 4px 10px;
+  }
 }
