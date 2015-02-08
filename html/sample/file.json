@@ -11,7 +11,7 @@
     "sub": {
       "body": [
         {
-          "id": "printf_1",
+          "id": "echo_2",
           "illusion": "PRINTF",
           "input": {"content": "#for_0.iterator"}
         }
