@@ -237,7 +237,8 @@ h1 {
   font-size: 12px;
   font-family: Consolas, monospace;
 }
-#run {
+#run,
+#runResult {
   display: none;
   background: #99bf75;
   position: absolute;
@@ -248,7 +249,8 @@ h1 {
   z-index: 500;
   margin: -65px 0 0 -250px;
 }
-#run textarea {
+#run textarea,
+#runResult textarea {
   width: 480px;
   margin: 10px;
   height: 75px;
@@ -257,17 +259,28 @@ h1 {
   padding: 10px;
   font-family: Consolas, monospace;
 }
-#run div {
+#run div,
+#runResult div {
   text-align: center;
 }
-#run a#download {
+#run a#download,
+#runResult a#download {
   background: #6a5545;
   color: #ffffff;
 }
-#run a {
+#run a,
+#runResult a {
   color: #6a5545;
   text-decoration: none;
   padding: 4px 10px;
+}
+#runResult {
+  display: none;
+  height: 400px;
+  margin-top: -200px;
+}
+#runResult textarea {
+  height: 350px;
 }
 input.transparent {
   width: 50px;

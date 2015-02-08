@@ -374,7 +374,9 @@ documentReady = ->
       illusions = data
       loadIllusions()
       loadJanish()
-      sample = document.URL.split("?")[1].replace("#", "")
+      sample = document.URL.split("?")[1]
+      if sample
+        sample = sample.replace("#", "")
       if sample
         $.ajax
           "url": "sample/" + sample + ".json"
@@ -415,5 +417,16 @@ window.displayMonitor = ->
 window.displayRun = ->
   $("#run").show()
 
+window.displayRunResult = ->
+  if window.server
+    server.emit('run')
+    server.on("result", (ret)->
+      $("#run-result-text").val(ret)
+    )
+  $("#runResult").show()
+
 window.hideRun = ->
   $("#run").hide()
+
+window.hideRunResult = ->
+  $("#runResult").hide()
