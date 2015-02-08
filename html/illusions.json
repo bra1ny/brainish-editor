@@ -53,6 +53,14 @@
         "illusion": "CD",
         "input": ["path"],
         "output": ["pwd"]
+      },
+      {
+        "name": "Grep Line",
+        "icon": "circle",
+        "description": "Search keyword in file",
+        "illusion": "GREP_LINE",
+        "input": ["matcher", "path"],
+        "output": []
       }
     ]
   },
