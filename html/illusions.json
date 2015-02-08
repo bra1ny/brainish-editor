@@ -63,9 +63,9 @@
         "output": []
       },
       {
-        "name": "Get Webpage Content",
+        "name": "Get Web Page Content",
         "icon": "cloud-download",
-        "description": "Search keyword in file",
+        "description": "Get the content of a web page.",
         "illusion": "DOWNLOAD_CONTENT",
         "input": ["url"],
         "output": ["content"]
