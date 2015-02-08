@@ -61,6 +61,14 @@
         "illusion": "GREP_LINE",
         "input": ["matcher", "path"],
         "output": []
+      },
+      {
+        "name": "Get Webpage Content",
+        "icon": "cloud-download",
+        "description": "Search keyword in file",
+        "illusion": "DOWNLOAD_CONTENT",
+        "input": ["url"],
+        "output": ["content"]
       }
     ]
   },
@@ -95,133 +103,6 @@
         "description": "Execute some illusions if condition matches.",
         "input": ["input1", "input2"],
         "output": ["output1", "output2"]
-      },
-      {
-        "name": "Check Condition2",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"]
-      },
-      {
-        "name": "Check Condition",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition2",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition2",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition2",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition2",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition2",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
-      },
-      {
-        "name": "Check Condition2",
-        "icon": "check",
-        "description": "Execute some illusions if condition matches.",
-        "input": ["input1", "input2"],
-        "output": ["output1", "output2"],
-        "sub": {
-          "body": "iterator"
-        }
       }
     ]
   }
