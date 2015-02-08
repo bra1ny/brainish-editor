@@ -27,11 +27,11 @@ io.on('connection', function(client){
       } 
     });
 
-    var brainish = compiler.decompile(compiler.simple2full(msg))
+    var brainish = compiler.decompile(compiler.simple2full(msg));
     client.emit('compilationFinished', {'bash':bash, 'brainish': brainish});
   });
 
-  client.on('run', function(msg){
+  client.on('run', function(){
     console.log ("aaa");
     fs.readFile('./bash', 'utf8', function (err,data) {
        if (err) {
@@ -44,7 +44,7 @@ io.on('connection', function(client){
        });
     });
     //var bash = compiler.compileJSH(compiler.simple2full(msg));
-    client.emit ('result', bash);
+    //client.emit ('result', bash);
   });
   // client.on('compileBrainish', function(msg){
     

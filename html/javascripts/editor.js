@@ -497,12 +497,8 @@
   };
 
   window.displayRunResult = function() {
-    if (window.compile) {
-      console.log(panel_janish);
-      console.log(JSON.stringify(panel_janish));
-      window.compile(panel_janish);
-    }
     if (window.server) {
+      server.emit('run');
       server.on("result", function(ret) {
         return $("#run-result-text").val(ret);
       });

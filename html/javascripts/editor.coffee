@@ -418,11 +418,8 @@ window.displayRun = ->
   $("#run").show()
 
 window.displayRunResult = ->
-  if window.compile
-    console.log panel_janish
-    console.log JSON.stringify(panel_janish)
-    window.compile(panel_janish)
   if window.server
+    server.emit('run')
     server.on("result", (ret)->
       $("#run-result-text").val(ret)
     )
