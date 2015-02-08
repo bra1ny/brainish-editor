@@ -56,7 +56,7 @@
       },
       {
         "name": "Grep Line",
-        "icon": "circle",
+        "icon": "code",
         "description": "Search keyword in file",
         "illusion": "GREP_LINE",
         "input": ["matcher", "path"],
