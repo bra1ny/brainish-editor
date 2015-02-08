@@ -3,7 +3,7 @@
     "id": "cd",
     "illusion": "CD",
     "input": {
-      "path": "example/log"
+      "path": "log/"
       }
   },
   {
