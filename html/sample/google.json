@@ -14,8 +14,8 @@
     }
   },
   {
-    "id": "printf",
-    "illusion": "PRINTF",
+    "id": "echo",
+    "illusion": "ECHO",
     "input": {
       "content": "#google_search.result"
     }

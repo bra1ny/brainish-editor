@@ -82,6 +82,14 @@
         "description": "Filter the file list.",
         "input": ["input1", "input2"],
         "output": ["output1", "output2"]
+      },
+      {
+        "name": "MOVE",
+        "icon": "paper-plane",
+        "description": "Move a file to a certain path",
+        "illusion": "MOVE",
+        "input": ["src_path", "dst_path"],
+        "output": ["target"]
       }
     ]
   },
