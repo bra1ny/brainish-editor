@@ -419,7 +419,7 @@ window.displayRun = ->
 
 window.displayRunResult = ->
   if window.server
-    server.emit('run')
+    server.emit('run', panel_janish)
     server.on("result", (ret)->
       $("#run-result-text").val(ret)
     )
