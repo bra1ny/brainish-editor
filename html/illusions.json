@@ -45,6 +45,22 @@
         "illusion": "GOOGLE_SEARCH",
         "input": ["url"],
         "output": ["result"]
+      },
+      {
+        "name": "Change Directory",
+        "icon": "circle",
+        "description": "Change Directory",
+        "illusion": "CD",
+        "input": ["path"],
+        "output": ["pwd"]
+      },
+      {
+        "name": "Grep Line",
+        "icon": "circle",
+        "description": "Search keyword in file",
+        "illusion": "GREP_LINE",
+        "input": ["matcher", "path"],
+        "output": []
       }
     ]
   },
