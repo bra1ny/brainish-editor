@@ -16,7 +16,7 @@
       },
       {
         "name": "Echo",
-        "icon": "print",
+        "icon": "eye",
         "description": "Echo an content.",
         "illusion": "ECHO",
         "input": ["content"],
@@ -32,7 +32,7 @@
       },
       {
         "name": "GOOGLE_SEARCH_URL",
-        "icon": "print",
+        "icon": "search",
         "description": "GOOGLE_SEARCH_URL.",
         "illusion": "GOOGLE_SEARCH_URL",
         "input": ["keyword"],
@@ -40,7 +40,7 @@
       },
       {
         "name": "GOOGLE_SEARCH",
-        "icon": "print",
+        "icon": "server",
         "description": "GOOGLE_SEARCH",
         "illusion": "GOOGLE_SEARCH",
         "input": ["url"],
@@ -54,7 +54,7 @@
     "list": [
       {
         "name": "List File",
-        "icon": "file",
+        "icon": "list",
         "description": "List all the files in a directory.",
         "illusion": "LS",
         "input": ["path"],
@@ -62,7 +62,7 @@
       },
       {
         "name": "Filter",
-        "icon": "check",
+        "icon": "filter",
         "description": "Filter the file list.",
         "input": ["input1", "input2"],
         "output": ["output1", "output2"]
